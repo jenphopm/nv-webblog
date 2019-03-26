@@ -9,6 +9,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
+require('./userPassport')
+
 require('./routes')(app)
 
 app.get('/status', function (req, res) {
