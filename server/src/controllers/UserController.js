@@ -65,12 +65,8 @@ module.exports = {
                 where: {
                     id: req.params.userId
                 }
-            }).then(function (user) {
-                if (!user) {
-                    return 'not find';
-                }
-                return user.dataValues;
             })
+            // const user = await User.findById(req.params.userId)
             res.send(user)
         } catch (err) {
             req.status(500).send({
