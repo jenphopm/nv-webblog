@@ -58,7 +58,7 @@ export default new Router({
     },
     {
       path: '/blog/create',
-      name: 'blogs-edit',
+      name: 'blogs-create',
       component: BlogCreate
     },
     {

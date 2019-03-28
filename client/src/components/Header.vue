@@ -12,7 +12,7 @@
           <router-link :to="{name: 'comments'}">Comments</router-link>
         </li>
         <li>
-          <a v-on:click.prevent="logout" href="#">Logout</a>
+          <router-link :to="{name: 'login'}">Login</router-link>
         </li>
         <li>
           <a href="#" v-on:click.prevent="logout">Logout</a>
