@@ -5,7 +5,7 @@ module.exports = {
         try {
             let blogs = null
             const search = req.query.search
-            console.log('search key: ' + search)
+            // console.log('search key: ' + search)
             if (search) {
                 blogs = await Blog.findAll({
                     where: {
@@ -82,7 +82,7 @@ module.exports = {
     // get blog by id
     async show(req, res) {
         try {
-            const blog = await Blog.findByPk(req.params.blogId)
+            const blog = await Blog.findById(req.params.blogId)
             res.send(blog)
         } catch (err) {
             req.status(500).send({

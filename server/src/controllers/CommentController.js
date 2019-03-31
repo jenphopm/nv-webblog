@@ -63,7 +63,7 @@ module.exports = {
     // get comment by id
     async show(req, res) {
         try {
-            const comment = await Comment.findByPk(req.params.commentId)
+            const comment = await Comment.findById(req.params.commentId)
             res.send(comment)
         } catch (err) {
             req.status(500).send({
