@@ -22,6 +22,10 @@ import BlogShow from '@/components/Blogs/ShowBlog'
 // Upload Testing
 import Upload from '@/components/Utils/Upload'
 
+// Front
+import FrontIndex from '@/components/Fronts/Index'
+import FrontShow from '@/components/Fronts/ShowBlog'
+
 Vue.use(Router)
 
 export default new Router({
@@ -85,6 +89,17 @@ export default new Router({
       path: '/upload',
       name: 'upload',
       component: Upload
+    },
+    // front
+    {
+      path: '/front',
+      name: 'front',
+      component: FrontIndex
+    },
+    {
+      path: '/front/read/:blogId',
+      name: 'front-read',
+      component: FrontShow
     },
   ]
 })

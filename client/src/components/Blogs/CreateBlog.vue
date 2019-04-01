@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="container blog-wrapper">
+    <main-header navsel="back"></main-header>
     <h1>Create Blog</h1>
     <form v-on:submit.prevent="createBlog">
       <p>
-        title:
-        <input type="text" v-model="blog.title">
+        <label for class="control-label">Title:</label>
+        <input type="text" v-model="blog.title" class="form-control">
       </p>
       <transition name="fade">
         <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
@@ -55,15 +56,12 @@ $event.target.files); fileCount = $event.target.files.length"
         />
       </p>
       <p>
-        category:
-        <input type="text" v-model="blog.category">
+        <label class="control-label">Category :</label>
+        <input type="text" v-model="blog.category" class="form-control">
       </p>
       <p>
-        status:
-        <input type="text" v-model="blog.status">
-      </p>
-      <p>
-        <button type="submit">create blog</button>
+        <button class="btn btn-success" type="submit">Create Blog</button>
+        <button class="btn btn-default" type="button" v-on:click="navigateTo('/blogs')">Back</button>
       </p>
     </form>
   </div>
@@ -107,6 +105,9 @@ export default {
     };
   },
   methods: {
+    navigateTo(route) {
+      this.$router.push(route);
+    },
     async createBlog() {
       this.blog.pictures = JSON.stringify(this.pictures);
       try {
@@ -210,110 +211,109 @@ export default {
   },
   created() {
     this.reset(),
-
-    this.config.toolbar = [
-      {
-        name: "document",
-        items: [
-          "Source",
-          "-",
-          "Save",
-          "NewPage",
-          "Preview",
-          "Print",
-          "-",
-          "Templates"
-        ]
-      },
-      {
-        name: "clipboard",
-        items: [
-          "Cut",
-          "Copy",
-          "Paste",
-          "PasteText",
-          "PasteFromWord",
-          "-",
-          "Undo",
-          "Redo"
-        ]
-      },
-      {
-        name: "editing",
-        items: ["Find", "Replace", "-", "SelectAll", "-", "Scayt"]
-      },
-      {
-        name: "forms",
-        items: [
-          "Form",
-          "Checkbox",
-          "Radio",
-          "TextField",
-          "Textarea",
-          "Select",
-          "Button",
-          "ImageButton",
-          "HiddenField"
-        ]
-      },
-      "/",
-      {
-        name: "basicstyles",
-        items: [
-          "Bold",
-          "Italic",
-          "Underline",
-          "Strike",
-          "Subscript",
-          "Superscript",
-          "-",
-          "CopyFormatting",
-          "RemoveFormat"
-        ]
-      },
-      {
-        name: "paragraph",
-        items: [
-          "NumberedList",
-          "BulletedList",
-          "-",
-          "Outdent",
-          "Indent",
-          "-",
-          "Blockquote",
-          "CreateDiv",
-          "-",
-          "JustifyLeft",
-          "JustifyCenter",
-          "JustifyRight",
-          "JustifyBlock",
-          "-",
-          "BidiLtr",
-          "BidiRtl",
-          "Language"
-        ]
-      },
-      { name: "links", items: ["Link", "Unlink", "Anchor"] },
-      {
-        name: "insert",
-        items: [
-          "Image",
-          "Flash",
-          "Table",
-          "HorizontalRule",
-          "Smiley",
-          "SpecialChar",
-          "PageBreak",
-          "Iframe",
-          "InsertPre"
-        ]
-      },
-      "/",
-      { name: "styles", items: ["Styles", "Format", "Font", "FontSize"] },
-      { name: "colors", items: ["TextColor", "BGColor"] },
-      { name: "tools", items: ["Maximize", "ShowBlocks"] },
-      { name: "about", items: ["About"] }
-    ]
+      (this.config.toolbar = [
+        {
+          name: "document",
+          items: [
+            "Source",
+            "-",
+            "Save",
+            "NewPage",
+            "Preview",
+            "Print",
+            "-",
+            "Templates"
+          ]
+        },
+        {
+          name: "clipboard",
+          items: [
+            "Cut",
+            "Copy",
+            "Paste",
+            "PasteText",
+            "PasteFromWord",
+            "-",
+            "Undo",
+            "Redo"
+          ]
+        },
+        {
+          name: "editing",
+          items: ["Find", "Replace", "-", "SelectAll", "-", "Scayt"]
+        },
+        {
+          name: "forms",
+          items: [
+            "Form",
+            "Checkbox",
+            "Radio",
+            "TextField",
+            "Textarea",
+            "Select",
+            "Button",
+            "ImageButton",
+            "HiddenField"
+          ]
+        },
+        "/",
+        {
+          name: "basicstyles",
+          items: [
+            "Bold",
+            "Italic",
+            "Underline",
+            "Strike",
+            "Subscript",
+            "Superscript",
+            "-",
+            "CopyFormatting",
+            "RemoveFormat"
+          ]
+        },
+        {
+          name: "paragraph",
+          items: [
+            "NumberedList",
+            "BulletedList",
+            "-",
+            "Outdent",
+            "Indent",
+            "-",
+            "Blockquote",
+            "CreateDiv",
+            "-",
+            "JustifyLeft",
+            "JustifyCenter",
+            "JustifyRight",
+            "JustifyBlock",
+            "-",
+            "BidiLtr",
+            "BidiRtl",
+            "Language"
+          ]
+        },
+        { name: "links", items: ["Link", "Unlink", "Anchor"] },
+        {
+          name: "insert",
+          items: [
+            "Image",
+            "Flash",
+            "Table",
+            "HorizontalRule",
+            "Smiley",
+            "SpecialChar",
+            "PageBreak",
+            "Iframe",
+            "InsertPre"
+          ]
+        },
+        "/",
+        { name: "styles", items: ["Styles", "Format", "Font", "FontSize"] },
+        { name: "colors", items: ["TextColor", "BGColor"] },
+        { name: "tools", items: ["Maximize", "ShowBlocks"] },
+        { name: "about", items: ["About"] }
+      ]);
   },
   computed: {
     isInitial() {
@@ -333,6 +333,9 @@ export default {
 </script>
 <style scoped>
 /* uplaod */
+.blog-wrapper {
+  margin-top: 80px;
+}
 .dropbox {
   outline: 2px dashed grey; /* the dash box */
   outline-offset: -10px;
@@ -373,9 +376,6 @@ ul.pictures li {
 ul.pictures li img {
   max-width: 180px;
   margin-right: 20px;
-}
-.clearfix {
-  clear: both;
 }
 /* thumbnail */
 .thumbnail-pic img {

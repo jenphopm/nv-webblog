@@ -1,13 +1,45 @@
 const { User } = require('../models')
 module.exports = {
     // get all user
+    // async index(req, res) {
+    //     try {
+    //         const users = await User.findAll()
+    //         res.send(users)
+    //     } catch (err) {
+    //         res.status(500).send({
+    //             error: 'The users information was incorrect'
+    //         })
+    //     }
+    // },
+    // index with serach user
     async index(req, res) {
         try {
-            const users = await User.findAll()
+            let users = null
+            const search = req.query.search
+            console.log('----------> search key: ' + search)
+
+            if (search) {
+                users = await User.findAll({
+                    where: {
+                        $or: [
+                            'name', 'lastname', 'email'
+                        ].map(key => ({
+                            [key]: {
+                                $like: `%${search}%`,
+                            }
+                        })),
+                    },
+                    order: [['updatedAt', 'DESC']]
+                })
+            } else {
+                users = await User.findAll({
+                    order: [['updatedAt', 'DESC']]
+                })
+            }
             res.send(users)
         } catch (err) {
             res.status(500).send({
-                error: 'The users information was incorrect'
+                error: 'an error has occured trying to fetch the users'
             })
         }
     },
