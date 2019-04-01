@@ -66,7 +66,7 @@
             </p>
             <!-- <p>status: {{ blog.status }}</p> -->
             <p>
-              <button class="btn btn-sm btn-info" v-on:click="navigateTo('/blog/'+ blog.id)">
+              <button class="btn btn-sm btn-info" v-on:click="navigateTo('/front/read/'+ blog.id)">
                 <i class="fab fa-readme"></i>
                 View Blog
               </button>

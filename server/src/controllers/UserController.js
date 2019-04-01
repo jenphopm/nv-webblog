@@ -50,7 +50,7 @@ module.exports = {
             res.send(user.toJSON())
         } catch (err) {
             res.status(500).send({
-                error: 'Create user incorrect'
+                error: 'User already in system'
             })
         }
     },
@@ -98,6 +98,24 @@ module.exports = {
         } catch (err) {
             req.status(500).send({
                 error: 'The user information was incorrect'
+            })
+        }
+    },
+    async getFront(req, res) {
+        try {
+            const users = await User.findAll()
+            let listNames = []
+            users.forEach(user => {
+                let name = {
+                    "id": user.id,
+                    "name": `${user.name} ${user.lastname}`
+                }
+                listNames.push(name)
+            })
+            res.send(listNames)
+        } catch (err) {
+            res.status(500).send({
+                error: 'The users information was incorrect'
             })
         }
     },

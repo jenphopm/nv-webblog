@@ -46,6 +46,9 @@ module.exports = (app) => {
     app.post('/login',
         UserAuthenController.login
     )
+    app.post('/front/login',
+        UserAuthenController.clientLogin
+    )
 
     // blog route
     // create blog
@@ -117,4 +120,17 @@ module.exports = (app) => {
             })
         }
     })
+    // get comment by blog id
+    app.get('/comment/blog/:blogId',
+        CommentController.blog
+    )
+    // get comment by user id
+    app.get('/comment/user/:userId',
+        CommentController.user
+    )
+    // users
+    // get front
+    app.get('/users/front',
+        UserController.getFront
+    )
 }
