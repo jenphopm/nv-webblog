@@ -29,11 +29,11 @@ module.exports = {
                             }
                         })),
                     },
-                    order: [['updatedAt', 'DESC']]
+                    order: [['createdAt', 'ASC']]
                 })
             } else {
                 users = await User.findAll({
-                    order: [['updatedAt', 'DESC']]
+                    order: [['createdAt', 'ASC']]
                 })
             }
             res.send(users)

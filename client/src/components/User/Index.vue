@@ -49,6 +49,20 @@
               <i class="fas fa-trash-alt"></i> Delete
             </button>
           </p>
+          <p>
+            <a class="btn btn-danger btn-sm" href="#" v-on:click.prevent="pauseUser(user.id)">
+              <i class="fas fa-pause"></i>
+              Pause
+            </a>&nbsp;
+            <a
+              class="btn btn-success btn-sm"
+              href="#"
+              v-on:click.prevent="activeUser(user.id)"
+            >
+              <i class="fas fa-check"></i>
+              Active
+            </a>&nbsp;
+          </p>
         </div>
       </transition-group>
     </div>
@@ -132,6 +146,30 @@ export default {
     },
     async refreshData() {
       this.users = (await UsersService.index()).data;
+    },
+    async pauseUser(userId) {
+      let user = {
+        id: userId,
+        status: "pause"
+      };
+      try {
+        await UsersService.put(user);
+        this.refreshData();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async activeUser(userId) {
+      let user = {
+        id: userId,
+        status: "active"
+      };
+      try {
+        await UsersService.put(user);
+        this.refreshData();
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   updated() {

@@ -29,11 +29,16 @@
             <li role="presentation">
               <router-link :to="{name: 'comments'}">Comments</router-link>
             </li>
-            <li role="presentation">
+            <li v-if="!isUserLoggedIn" role="presentation">
               <router-link :to="{name: 'login'}">Login</router-link>
             </li>
-            <li role="presentation">
-              <a href="#" v-on:click="logout">Logout</a>
+            <transition name="fade">
+              <li v-if="isUserLoggedIn" role="presentation">
+                <a href="#">{{user.name}}</a>
+              </li>
+            </transition>
+            <li v-if="isUserLoggedIn" role="presentation">
+              <a href="#" v-on:click.prevent="logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -43,6 +48,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   methods: {
     logout() {
@@ -52,6 +59,9 @@ export default {
         name: "login"
       });
     }
+  },
+  computed: {
+    ...mapState(["isUserLoggedIn", "user"])
   }
 };
 </script>

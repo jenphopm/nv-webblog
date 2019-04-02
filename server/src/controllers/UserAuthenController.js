@@ -48,6 +48,11 @@ module.exports = {
                     error: 'Permission not correct'
                 })
             }
+            if (user.status != "active") {
+                return res.status(403).send({
+                    error: 'Your account suspend.'
+                })
+            }
             const userJSON = user.toJSON()
             res.send({
                 user: userJSON,
@@ -78,6 +83,11 @@ module.exports = {
             if (!isPasswordValid) {
                 return res.status(403).send({
                     error: 'User/Password not correct'
+                })
+            }
+            if (user.status != "active") {
+                return res.status(403).send({
+                    error: 'Your account suspend.'
                 })
             }
             // dont't check permission type

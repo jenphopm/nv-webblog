@@ -31,6 +31,7 @@ module.exports = (app) => {
     )
     // delete user
     app.delete('/user/:userId',
+        isAuthenController,
         UserController.remove
     )
     // get user by id
@@ -53,14 +54,17 @@ module.exports = (app) => {
     // blog route
     // create blog
     app.post('/blog',
+        isAuthenController,
         BlogController.create
     )
     // edit blog, suspend, active
     app.put('/blog/:blogId',
+        isAuthenController,
         BlogController.put
     )
     // delete blog
     app.delete('/blog/:blogId',
+        isAuthenController,
         BlogController.remove
     )
     // get blog by id
@@ -69,6 +73,7 @@ module.exports = (app) => {
     )
     // get all blog
     app.get('/blogs',
+        isAuthenController,
         BlogController.index
     )
 
@@ -95,17 +100,18 @@ module.exports = (app) => {
     )
     // upload
     app.post("/upload", function (req, res) {
-        // isUserAuthenticated,
-        upload(req, res, function (err) {
-            if (err) {
-                return res.end("Error uploading file.");
-            }
-            res.end("File is uploaded");
-        })
+        isUserAuthenticated,
+            upload(req, res, function (err) {
+                if (err) {
+                    return res.end("Error uploading file.");
+                }
+                res.end("File is uploaded");
+            })
     })
     //delete file uploaded function
     app.post('/upload/delete', async function (req, res) {
         try {
+            isAuthenController
             const fs = require('fs');
             console.log(req.body.filename)
             fs.unlink(process.cwd() + '/public/uploads/' + req.body.filename,
@@ -132,5 +138,8 @@ module.exports = (app) => {
     // get front
     app.get('/users/front',
         UserController.getFront
+    )
+    app.get('/blogs/front',
+        BlogController.frontIndex
     )
 }

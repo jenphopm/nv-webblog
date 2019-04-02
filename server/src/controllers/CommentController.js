@@ -78,7 +78,7 @@ module.exports = {
                 where: {
                     blogId: req.params.blogId
                 },
-                order: [['updatedAt', 'DESC']]
+                order: [['createdAt', 'DESC']]
             })
             res.send(comment)
         } catch (err) {
@@ -94,7 +94,7 @@ module.exports = {
                 where: {
                     userId: req.params.userId
                 },
-                order: [['updatedAt', 'DESC']]
+                order: [['createdAt', 'DESC']]
             })
             res.send(comment)
         } catch (err) {

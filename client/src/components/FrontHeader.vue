@@ -47,7 +47,7 @@
       <transition name="fade">
         <div class="login-wrapper">
           <h3>Client Login</h3>
-          <form v-on:submit.prevent="clientLogin" class="formhorizontal">
+          <form v-on:submit.prevent="clientLogin" class="form-horizontal">
             <div class="form-group">
               <label class="control-label col-md-3">Email:</label>
               <div class="col-md-9">
@@ -90,7 +90,7 @@
       <transition name="fade">
         <div class="login-wrapper">
           <h3>Client Register</h3>
-          <form v-on:submit.prevent="clientRegister" class="formhorizontal">
+          <form v-on:submit.prevent="clientRegister" class="form-horizontal">
             <div class="form-group">
               <label class="control-label col-md-3">Email:</label>
               <div class="col-md-9">

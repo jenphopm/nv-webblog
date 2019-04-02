@@ -41,6 +41,11 @@ user.id">
         <i class="fas fa-trash-alt"></i> Delete
       </button>
     </p>
+    <p v-else-if="user.type === 'admin'">
+      <button v-on:click="deleteComment(comment)" class="btn btn-xs btn-danger">
+        <i class="fas fa-trash-alt"></i> Delete
+      </button>
+    </p>
   </div>
 </template>
 
@@ -120,11 +125,11 @@ export default {
 
 <style scoped>
 .comment-user {
-background:#888;
-color:white;
-border-radius:4px;
+  background: #888;
+  color: white;
+  border-radius: 4px;
 }
-h4{
-padding: 4px;
+h4 {
+  padding: 4px;
 }
 </style>

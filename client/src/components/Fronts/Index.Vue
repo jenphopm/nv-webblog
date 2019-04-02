@@ -62,7 +62,7 @@
             </p>
             <p>
               <strong>Create:</strong>
-              {{ blog.createdAt }}
+              {{ blog.createdAt | formatedDate }}
             </p>
             <!-- <p>status: {{ blog.status }}</p> -->
             <p>
@@ -90,8 +90,11 @@ results.length && results.length > 0"
 import BlogsService from "@/services/BlogsService";
 import _ from "lodash";
 import ScrollMonitor from "scrollMonitor";
+import moment from "moment";
+
 let LOAD_NUM = 3;
 let pageWatcher;
+
 export default {
   watch: {
     search: _.debounce(async function(value) {
@@ -112,7 +115,7 @@ export default {
         this.blogs = [];
         this.results = [];
         this.loading = true;
-        this.results = (await BlogsService.index(value)).data;
+        this.results = (await BlogsService.frontIndex(value)).data;
         this.appendResults();
         this.results.forEach(blog => {
           if (this.category.length > 0) {
@@ -165,7 +168,7 @@ export default {
       }
     },
     async refreshData() {
-      this.blogs = (await BlogsService.index()).data;
+      this.blogs = (await BlogsService.frontIndex()).data;
     },
     setCategory(keyword) {
       if (keyword === " ") {
@@ -185,6 +188,11 @@ export default {
     if (pageWatcher) {
       pageWatcher.destroy();
       pageWatcher = null;
+    }
+  },
+  filters: {
+    formatedDate(value) {
+      return moment(String(value)).format("DD/MM/YYYY");
     }
   }
 };
