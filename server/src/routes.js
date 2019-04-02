@@ -99,19 +99,17 @@ module.exports = (app) => {
         CommentController.index
     )
     // upload
-    app.post("/upload", function (req, res) {
-        isUserAuthenticated,
-            upload(req, res, function (err) {
-                if (err) {
-                    return res.end("Error uploading file.");
-                }
-                res.end("File is uploaded");
-            })
+    app.post("/upload", isAuthenController, function (req, res) {
+        upload(req, res, function (err) {
+            if (err) {
+                return res.end("Error uploading file.");
+            }
+            res.end("File is uploaded");
+        })
     })
     //delete file uploaded function
-    app.post('/upload/delete', async function (req, res) {
+    app.post('/upload/delete', isAuthenController, async function (req, res) {
         try {
-            isAuthenController
             const fs = require('fs');
             console.log(req.body.filename)
             fs.unlink(process.cwd() + '/public/uploads/' + req.body.filename,
