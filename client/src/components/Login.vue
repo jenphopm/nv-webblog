@@ -6,11 +6,11 @@
           <div class="con-md-12">
             <div class="login-wrapper">
               <h1>Login</h1>
-              <form v-on:submit.prevent="onLogin" class="formhorizontal">
+              <form v-on:submit.prevent="onLogin" class="form-horizontal">
                 <div class="form-group">
                   <label for class="control-label col-md-3">Username:</label>
                   <div class="col-md-8">
-                    <input type="text" v-model="email" class="formcontrol">
+                    <input type="text" v-model="email" class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
