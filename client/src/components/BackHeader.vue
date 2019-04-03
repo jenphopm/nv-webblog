@@ -24,10 +24,16 @@
               <router-link :to="{name: 'blogs'}">Blogs</router-link>
             </li>
             <li role="presentation">
+              <router-link :to="{name: 'books'}">Books</router-link>
+            </li>
+            <li role="presentation">
               <router-link :to="{name: 'users'}">Users</router-link>
             </li>
             <li role="presentation">
               <router-link :to="{name: 'comments'}">Comments</router-link>
+            </li>
+            <li role="presentation">
+              <router-link :to="{name: 'books-carlist'}">Cart List</router-link>
             </li>
             <li v-if="!isUserLoggedIn" role="presentation">
               <router-link :to="{name: 'login'}">Login</router-link>

@@ -14,7 +14,7 @@
           <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
-            <span class="iconbar"></span>
+            <span class="icon-bar"></span>front-cartlist
             <span class="icon-bar"></span>
           </button>
         </div>
@@ -25,6 +25,11 @@
                 <i class="fas fa-home"></i> Home
               </router-link>
             </li>
+            <li role="presentation">
+              <router-link :to="{name: 'front-books'}">
+                <i class="fas fa-book-open"></i> Books
+              </router-link>
+            </li>
             <li v-if="!isUserLoggedIn" role="presentation">
               <a href="#" v-on:click.prevent="showLogin = true">Login</a>
             </li>
@@ -33,7 +38,10 @@
             </li>
             <transition name="fade">
               <li v-if="isUserLoggedIn" role="presentation">
-                <router-link v-bind:to="{name: 'login'}">{{user.name}}</router-link>
+                <router-link :to="{name: 'cartlist'}">
+                  <i class="fas fa-user"></i>
+                  {{user.name}}
+                </router-link>
               </li>
             </transition>
             <li v-if="isUserLoggedIn" role="presentation">

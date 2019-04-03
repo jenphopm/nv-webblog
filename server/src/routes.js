@@ -3,6 +3,8 @@ const UserAuthenController = require('./controllers/UserAuthenController')
 const isAuthenController = require('./controllers/isAuthenController')
 const BlogController = require('./controllers/BlogController')
 const CommentController = require('./controllers/CommentController')
+const BookController = require('./controllers/BookController')
+const BuyController = require('./controllers/BuyController')
 
 let multer = require("multer")
 
@@ -139,5 +141,53 @@ module.exports = (app) => {
     )
     app.get('/blogs/front',
         BlogController.frontIndex
+    )
+    // book route
+    // create book
+    app.post('/book',
+        isAuthenController,
+        BookController.create
+    )
+    // edit book, suspend, active
+    app.put('/book/:bookId',
+        isAuthenController,
+        BookController.put
+    )
+    // delete book
+    app.delete('/book/:bookId',
+        isAuthenController,
+        BookController.remove
+    )
+    // get book by id
+    app.get('/book/:bookId',
+        BookController.show
+    )
+    // get all book
+    app.get('/books',
+        isAuthenController,
+        BookController.index
+    )
+    app.get('/books/front',
+        BookController.frontIndex
+    )
+    // buy route
+    // create buy
+    app.post('/buy',
+        isAuthenController,
+        BuyController.create
+    )
+    // edit buy, suspend, active
+    app.put('/buy/:buyId',
+        isAuthenController,
+        BuyController.put
+    )
+    // get all buy
+    app.get('/buys',
+        isAuthenController,
+        BuyController.index
+    )
+    // get all buy
+    app.get('/buy/user/:userid',
+        BuyController.user
     )
 }

@@ -26,6 +26,17 @@ import Upload from '@/components/Utils/Upload'
 import FrontIndex from '@/components/Fronts/Index'
 import FrontShow from '@/components/Fronts/ShowBlog'
 
+// Books
+import BookIndex from '@/components/Books/Index'
+import BookCreate from '@/components/Books/CreateBook'
+import BookEdit from '@/components/Books/EditBook'
+import BookShow from '@/components/Books/ShowBook'
+import BookCartList from '@/components/Books/CartList'
+
+import FrontBooks from '@/components/Fronts/Books'
+import FrontViewBook from '@/components/Fronts/ViewBookMore'
+import FrontCartList from '@/components/Fronts/CartList'
+
 Vue.use(Router)
 
 export default new Router({
@@ -100,6 +111,47 @@ export default new Router({
       path: '/front/read/:blogId',
       name: 'front-read',
       component: FrontShow
+    },
+    // books
+    {
+      path: '/books',
+      name: 'books',
+      component: BookIndex
+    },
+    {
+      path: '/book/create',
+      name: 'books-edit',
+      component: BookCreate
+    },
+    {
+      path: '/book/edit/:bookId',
+      name: 'book-edit',
+      component: BookEdit
+    },
+    {
+      path: '/book/:bookId',
+      name: 'book',
+      component: BookShow
+    },
+    {
+      path: '/book-cartlist',
+      name: 'books-carlist',
+      component: BookCartList
+    },
+    {
+      path: '/front-books',
+      name: 'front-books',
+      component: FrontBooks
+    },
+    {
+      path: '/front-view-book/:bookId',
+      name: 'front-view-books',
+      component: FrontViewBook
+    },
+    {
+      path: '/cartlist',
+      name: 'cartlist',
+      component: FrontCartList
     },
   ]
 })
