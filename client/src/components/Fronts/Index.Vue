@@ -91,6 +91,7 @@ import BlogsService from "@/services/BlogsService";
 import _ from "lodash";
 import ScrollMonitor from "scrollMonitor";
 import moment from "moment";
+import config from "@/config/config";
 
 let LOAD_NUM = 3;
 let pageWatcher;
@@ -136,7 +137,7 @@ export default {
   data() {
     return {
       blogs: [],
-      BASE_URL: "http://localhost:8081/assets/uploads/",
+      BASE_URL: config.URL_UPLOAD,
       search: "",
       results: [],
       category: [],

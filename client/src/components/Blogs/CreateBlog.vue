@@ -70,6 +70,7 @@ $event.target.files); fileCount = $event.target.files.length"
 import BlogsService from "@/services/BlogsService";
 import VueCkeditor from "vue-ckeditor2";
 import UploadService from "@/services/UploadService";
+import config from "@/config/config";
 
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
@@ -94,7 +95,7 @@ export default {
         height: 300
       },
       // upload data
-      BASE_URL: "http://localhost:8081/assets/uploads/",
+      BASE_URL: config.URL_UPLOAD,
       error: null,
       uploadError: null,
       currentStatus: null,
